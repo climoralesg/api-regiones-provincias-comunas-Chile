@@ -1,0 +1,21 @@
+{
+  "name": "apirestregiones",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/climoralesg/api-regiones-provincias-comunas-Chile.git"
+  },
+  "keywords": ["ES"],
+  "author": "Claudio Morales",
+  "email": "climoralesg@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/climoralesg/api-regiones-provincias-comunas-Chile/issues"
+  },
+  "homepage": "https://github.com/climoralesg/api-regiones-provincias-comunas-Chile#readme",
+  "description": "Api de regiones provincias y comunas de Chile"
+}
