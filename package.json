@@ -9,7 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/climoralesg/api-regiones-provincias-comunas-Chile.git"
   },
-  "keywords": ["ES"],
+  "keywords": [
+    "ES"
+  ],
   "author": "Claudio Morales",
   "email": "climoralesg@gmail.com",
   "license": "ISC",
@@ -17,5 +19,8 @@
     "url": "https://github.com/climoralesg/api-regiones-provincias-comunas-Chile/issues"
   },
   "homepage": "https://github.com/climoralesg/api-regiones-provincias-comunas-Chile#readme",
-  "description": "Api de regiones provincias y comunas de Chile"
+  "description": "Api de regiones provincias y comunas de Chile",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
