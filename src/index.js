@@ -1,1 +1,2 @@
-console.log('works')
+const variable='trabaja'
+console.log('variable')
