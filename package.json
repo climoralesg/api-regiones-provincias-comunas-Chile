@@ -21,6 +21,14 @@
   "homepage": "https://github.com/climoralesg/api-regiones-provincias-comunas-Chile#readme",
   "description": "Api de regiones provincias y comunas de Chile",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6"
   }
 }
