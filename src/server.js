@@ -10,6 +10,6 @@ const app = express();
 app.set('port',process.env.PORT || 4000); //conecta el puerto
 
 app.use(IndexRoutes); //usa las rutas de index.Routes, podriamos poner rutas aqui pero por legibilidad las importamos
-app.use('/region',RegionesRoutes);
+app.use('/regiones',RegionesRoutes);
 
 export default app;

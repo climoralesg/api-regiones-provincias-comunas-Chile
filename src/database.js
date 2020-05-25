@@ -3,17 +3,17 @@ require('dotenv').config();
 
 export async function connect(){
     try {        
-        const db=await MongoClient.connect(process.env.Mongo_DB,{
+        const client=await MongoClient.connect(process.env.MONGO_DB,{
             //useNewUrlParser:true,
             useUnifiedTopology: true
         });
-        //const db = client.db('territoriochile');
+
+        const db = client.db(process.env.DB_NAME);
         console.log('Base de datos conectada');
         return db;    
     } catch (error) {
         console.log(error);
     }
-    
 
 }
 

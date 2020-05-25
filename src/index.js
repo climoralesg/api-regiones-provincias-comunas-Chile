@@ -3,12 +3,14 @@ import '@babel/polyfill'; //permite utilizar el conjunto completo de caracterís
 import app from './server'
 
 import { connect } from './database'
+
+//const conexion = connect();
 //app.listen(3000); // server.listen();
 
 async function main() {
 
     await app.listen(app.get('port'));
-    await connect();
+    //await connect();
     console.log('Servidor en puerto ', app.get('port'));
 }
 
