@@ -1,4 +1,4 @@
-import express from 'express' //importa express y define constante
+import express,{json} from 'express' //importa express y define constante
 import IndexRoutes from './routes/index.routes'
 import RegionesRoutes from './routes/regiones.routes'
 
@@ -9,6 +9,10 @@ const app = express();
 
 app.set('port',process.env.PORT || 4000); //conecta el puerto
 
+//Middlewares
+app.use(json()); //toma los datos y los procesa para generar un json (POST)
+
+//Rutas
 app.use(IndexRoutes); //usa las rutas de index.Routes, podriamos poner rutas aqui pero por legibilidad las importamos
 app.use('/regiones',RegionesRoutes);
 
