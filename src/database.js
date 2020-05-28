@@ -12,6 +12,7 @@ export async function connect(){
         return db;    
     } catch (error) {
         console.log(error);
+        return 1;
     }
 }
 
