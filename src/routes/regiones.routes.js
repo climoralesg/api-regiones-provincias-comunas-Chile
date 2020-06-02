@@ -117,27 +117,30 @@ router.get('/:id/provincia/:cod_provincia', async (req, res) => {
     const cod_provincia = req.params.cod_provincia;
     const db = await connect();
     if (db === 1) {
-        const respuesta = mensaje(1, "Hubo un error en la conexion a la base de datos", null)
+        const respuesta = mensajeProvincia(1, "Hubo un error en la conexion a la base de datos", null)
         console.log(respuesta);
         res.json(respuesta);
     } else {
         try {
             console.log(id);
             console.log(cod_provincia);
-            const busqueda = await db.collection('regions').findOne({ _id: ObjectID(id),"provincias.codigo":cod_provincia}, { projection: { "provincias": 1, _id: 1 } }).then(function (doc) {
+            const busqueda = await db.collection('regions').findOne({ _id: ObjectID(id),"provincias.codigo":cod_provincia},
+             {  projection: { "provincias": { $elemMatch: { "codigo": cod_provincia } } } } ).then(function (doc) {
                 if (!doc) {
-                    const respuesta = mensaje(3, "Consulta relizada, no se ha encontrado documento", null)
+                    const respuesta = mensajeProvincia(3, "Consulta relizada, no se ha encontrado documento", null)
                     console.log(respuesta);
                     res.json(respuesta);
                 } else {
-                    const respuesta = mensaje(0, "Consulta relizada", doc)
+                    const respuesta = mensajeProvincia(0, "Consulta relizada", doc)
                     console.log(respuesta);
                     res.json(respuesta);
+
+                    //projection: { "provincias": { $elemMatch: { "codigo": cod_provincia }
                 }
             });
             console.log(busqueda);
         } catch (error) {
-            const respuesta = mensaje(2, "Hubo un error en la consulta", null);
+            const respuesta = mensajeProvincia(2, "Hubo un error en la consulta", null);
             console.log(respuesta);
             res.json(respuesta);
         }
@@ -205,6 +208,18 @@ function mensajeArray(cod, resp, info) {
     return estado;
 }
 
+function mensajeProvincia(cod,resp,info){
+    const estado={
+        estado:{
+            codigo:cod,
+            respuesta:resp
+        },
+        provincia:{
+            ...info.provincias[0]
+        }
+    }
+    return estado;
+}
 
 
 export default router;

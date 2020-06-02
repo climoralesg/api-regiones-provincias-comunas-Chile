@@ -12,25 +12,25 @@ router.get('/', async (req, res) => {
         console.log(respuesta);
         res.json(respuesta);
     } else {
-        try{
+        try {
             const busqueda = await db.collection('regions').find({},
-                { projection: { "provincias": 1, _id:1} })
-                .toArray().then(function(docs){
-                    if(docs.length==0){
+                { projection: { "provincias.nombre": 1,"provincias.codigo":1, _id: 1 } })
+                .toArray().then(function (docs) {
+                    if (docs.length == 0) {
                         const respuesta = mensajeArray(3, "Consulta relizada, no se ha encontrado documento", null)
                         console.log(respuesta);
                         res.json(respuesta);
-                    }else{
+                    } else {
                         const respuesta = mensajeArray(0, "Consulta relizada", docs)
                         console.log(respuesta);
                         res.json(respuesta);
                     }
-            });
-            
+                });
+
             //console.log(busqueda);
             //res.json(busqueda);
-            
-        }catch(error){
+
+        } catch (error) {
             const respuesta = mensajeArray(2, "Hubo un error en la consulta", null);
             console.log(respuesta);
             res.json(respuesta);
@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:cod_provincia', async (req, res) => {
-    const { id } = req.params;
+    const { cod_provincia } = req.params;
     const db = await connect();
     if (db === 1) {
         const respuesta = mensaje(1, "Hubo un error en la conexion a la base de datos", null)
@@ -49,7 +49,9 @@ router.get('/:cod_provincia', async (req, res) => {
         res.json(respuesta);
     } else {
         try {
-            const busqueda =await db.collection('regions').findOne({ _id: ObjectID(id) }, { projection: { "provincias": 1, _id:1} }).then(function (doc) {
+            const busqueda = await db.collection('regions').findOne({ "provincias.codigo": cod_provincia }, {
+                projection: { "provincias": { $elemMatch: { "codigo": cod_provincia } } }
+            }).then(function (doc) {
                 if (!doc) {
                     const respuesta = mensaje(3, "Consulta relizada, no se ha encontrado documento", null)
                     console.log(respuesta);
@@ -74,27 +76,38 @@ router.get('/:cod_provincia', async (req, res) => {
 
 
 function mensaje(cod, resp, info) {
+    
     const estado = {
         estado: {
             codigo: cod,
             respuesta: resp,
         },
-        region: {
-            ...info
+        provincia:{
+            ...info.provincias[0]
         }
+      
+
     }
     return estado;
 }
 
 function mensajeArray(cod, resp, info) {
+    const arrayDatos=[];
+    for(let i=0;i<info.length;i++){
+        for(let j=0;j<info[i].provincias.length;j++){
+            arrayDatos.push(info[i].provincias[j]);
+            console.log(arrayDatos);
+        }
+        
+    }    
     const estado = {
         estado: {
             codigo: cod,
             respuesta: resp,
-        },
-        provincias: [
-            ...info
+        },provincias:[
+            ...arrayDatos
         ]
+            
     }
     return estado;
 }
