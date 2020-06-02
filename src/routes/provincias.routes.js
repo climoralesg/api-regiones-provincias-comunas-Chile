@@ -50,7 +50,7 @@ router.get('/:cod_provincia', async (req, res) => {
     } else {
         try {
             const busqueda = await db.collection('regions').findOne({ "provincias.codigo": cod_provincia }, {
-                projection: { "provincias": { $elemMatch: { "codigo": cod_provincia } } }
+                projection: { "provincias": { $elemMatch: { "codigo": cod_provincia }},"provincias.comunas":0 }
             }).then(function (doc) {
                 if (!doc) {
                     const respuesta = mensaje(3, "Consulta relizada, no se ha encontrado documento", null)
