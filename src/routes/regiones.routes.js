@@ -185,6 +185,197 @@ router.get('/cod_iso/:cod_iso', async (req, res) => {
     }
 });
 
+router.get('/:id/comunas', async (req, res) => {
+    const { id } = req.params;
+    const db = await connect();
+    if (db === 1) {
+        const respuesta = mensajeArrayComunas(1, "Hubo un error al conectar la base de datos", null)
+        console.log(respuesta);
+        res.json(respuesta)
+    } else {
+        db.collection('regions').findOne({ _id: ObjectID(id) },
+            { projection: { "provincias.comunas": 1 } }, function (err, doc) {
+                if (err) {
+                    const respuesta = mensajeComunas(1, "Hubo un error en la conexion a la base de datos", null)
+                    console.log(respuesta);
+                    res.json(respuesta);
+                } else {
+                    if (!doc) {
+                        const respuesta = mensajeComunas(3, "Hubo un error en la conexion a la base de datos", null)
+                        console.log(respuesta);
+                        res.json(respuesta);
+                    } else {
+                        const respuesta = mensajeComunas(0, "Consulta realizada", doc)
+                        console.log(respuesta);
+                        res.json(respuesta);
+                    }
+                }
+
+
+            })
+    }
+})
+
+router.get('/:id/comunas/:cod_comuna', async (req, res) => {
+    const id = req.params.id;
+    const cod_comuna = req.params.cod_comuna;
+    const db = await connect();
+    if(db===1){
+        const respuesta=mensajeArrayComunas(1, "Hubo un error al conectar la base de datos", null);
+        console.log(respuesta);
+        res.json(respuesta);
+    }else{
+        db.collection('regions').findOne({_id:ObjectID(id)},
+        {projection:{"provincias.comunas":1}},function(err,doc){
+            if(err){
+                const respuesta=mensajeComunaRegion(1, "Hubo un error en la conexion a la base de datos", null)
+                console.log(respuesta);
+                res.json(respuesta);
+            }else{
+                if(!doc){
+                    const respuesta = mensajeComunaRegion(3, "Hubo un error en la conexion a la base de datos", null)
+                        console.log(respuesta);
+                        res.json(respuesta);
+                }else{
+                    const respuesta = mensajeComunaRegion(0, "Consulta realizada", doc,cod_comuna)
+                    console.log(respuesta);
+                    res.json(respuesta);
+                }
+            }
+        })
+    }
+})
+
+
+router.get('/:id/provincias/:cod_provincia/comunas',async (req,res)=>{
+    const id=req.params.id;
+    const cod_provincia=req.params.cod_provincia;
+    const db=await connect();
+
+    if(db===1){
+        const respuesta = mensajeArrayComunas(1, "Hubo un error al conectar la base de datos", null)
+        console.log(respuesta);
+        res.json(respuesta)
+    }else{
+        db.collection('regions').findOne({_id: ObjectID(id)},
+         {projection: {"provincias":{$elemMatch:{"codigo":cod_provincia}},"provincia.comunas":1}},function(err,doc){
+            if(err){
+                const respuesta = mensajeComunas(1, "Hubo un error en la conexion a la base de datos", null)
+                console.log(respuesta);
+                res.json(respuesta);
+            }else{
+                if(!doc){
+                    const respuesta = comunasRegionProvincia(1, "Consulta realizada", null)
+                    console.log(respuesta);
+                    res.json(respuesta);
+                }else{
+                    const respuesta = comunasRegionProvincia(0, "Consulta realizada", doc)
+                    console.log(respuesta);
+                    res.json(respuesta);
+                }
+            }             
+         })
+    }
+})
+
+router.get('/:id/provincias/:cod_provincia/comunas/:cod_comuna',async (req,res)=>{
+    const id=req.params.id;
+    const cod_provincia=req.params.cod_provincia;
+    const cod_comuna=req.params.cod_comuna;
+    const db=await connect();
+
+    if(db===1){
+        const respuesta = mensajeArrayComunas(1, "Hubo un error al conectar la base de datos", null)
+        console.log(respuesta);
+        res.json(respuesta)
+    }else{
+        db.collection('regions').findOne({_id: ObjectID(id)},
+         {projection: {"provincias":{$elemMatch:{"codigo":cod_provincia}},"provincia.comunas":1}},function(err,doc){
+            if(err){
+                const respuesta = mensajeComunas(1, "Hubo un error en la conexion a la base de datos", null)
+                console.log(respuesta);
+                res.json(respuesta);
+            }else{
+                if(!doc){
+                    const respuesta = comunasRegionProvincia(1, "Consulta realizada", null)
+                    console.log(respuesta);
+                    res.json(respuesta);
+                }else{
+                    const respuesta = mensajeComunaRegion(0, "Consulta realizada", doc,cod_comuna)
+                    console.log(respuesta);
+                    res.json(respuesta);
+                }
+            }             
+         })
+    }
+})
+
+
+
+
+
+function comunasRegionProvincia(cod, resp, info){
+    const comunas=[];
+    const comuna = info.provincias.map(function (provincia) {
+        const consulta = provincia.comunas.map(function(comuna){
+            comunas.push(comuna);
+        });
+    });
+
+    const estado={
+        estado:{
+            codigo:cod,
+            respuesta:resp,
+
+        },
+        comunas
+    }   
+    return estado;
+}
+
+function mensajeComunaRegion(cod,resp,info,cod_comuna){
+    const comuna = info.provincias.map(function (provincia) {
+        const consulta = provincia.comunas.filter(
+            comuna => comuna.codigo === cod_comuna
+        )
+        return consulta[0];
+    });
+
+    const estado = {
+        estado: {
+            codigo: cod,
+            respuesta: resp,
+        },
+        comuna: {
+            ...comuna[0]
+        }
+
+    }
+    return estado;
+}
+
+
+
+function mensajeComunas(cod, resp, info) {
+    const comunas = [];
+    const comuna = info.provincias.map(function (provincia) {
+        const consulta = provincia.comunas.map(function (comuna) {
+            comunas.push(comuna);
+        });
+    });
+
+    const estado = {
+        estado: {
+            codigo: cod,
+            respuesta: resp,
+
+        },
+        comunas
+    }
+    return estado;
+}
+
+
 
 function mensaje(cod, resp, info) {
     const estado = {

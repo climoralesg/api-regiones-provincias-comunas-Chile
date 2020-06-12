@@ -2,6 +2,7 @@ import express,{json} from 'express' //importa express y define constante
 import IndexRoutes from './routes/index.routes'
 import RegionesRoutes from './routes/regiones.routes'
 import ProvinciasRoutes from './routes/provincias.routes'
+import ComunasRoutes from './routes/comunas.routes'
 
 const app = express();
 
@@ -18,5 +19,7 @@ app.use(IndexRoutes); //usa las rutas de index.Routes, podriamos poner rutas aqu
 app.use('/regiones',RegionesRoutes);
 
 app.use('/provincias',ProvinciasRoutes);
+
+app.use('/comunas',ComunasRoutes);
 
 export default app;
