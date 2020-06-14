@@ -11,6 +11,11 @@ async function main() {
 
     await app.listen(app.get('port'));
     //await connect();
+    console.log('Iniciando Organizacion Territorial Chilena');
+
+    console.log('Autor: climoralesg');
+    console.log('Correo: climoralesg@gmail.com');
+
     console.log('Servidor en puerto ', app.get('port'));
 }
 

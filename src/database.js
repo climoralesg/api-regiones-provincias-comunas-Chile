@@ -8,7 +8,6 @@ export async function connect() {
             useUnifiedTopology: true
         });
         const db = client.db(process.env.DB_NAME);
-        console.log('Base de datos conectada');
         return db;
     } catch (error) {
         console.log(error);
