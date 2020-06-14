@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
                 }
             }
         })
+        db.close;
     }
 });
 
@@ -51,6 +52,7 @@ router.get('/:cod_comuna', async (req, res) => {
                     }
                 }
             })
+        db.close;
     }
 });
 

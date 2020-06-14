@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
                         res.json(respuesta);
                     }
                 }
-        });
+            });
+        db.close;
     }
 
 });
@@ -57,8 +58,9 @@ router.get('/:cod_provincia', async (req, res) => {
                 }
             }
         })
+        db.close;
     }
-    db.close;
+
 });
 
 //Consulta de las comunas de una provincia.
@@ -85,6 +87,7 @@ router.get('/:cod_provincia/comunas', async (req, res) => {
                     }
                 }
             })
+        db.close;
     }
 })
 
@@ -102,7 +105,7 @@ router.get('/:cod_provincia/comunas/:cod_comuna', async (req, res) => {
             { projection: { "provincias": { $elemMatch: { "codigo": cod_provincia } }, "provincias.comunas": 1, _id: 0 } }, function (err, doc) {
                 if (err) {
                     const respuesta = mensajeErrorComuna(2, "consulta realizada, hubo un error en la consulta");
-                  
+
                     res.json(respuesta);
                 } else {
                     if (!doc) {
@@ -114,7 +117,7 @@ router.get('/:cod_provincia/comunas/:cod_comuna', async (req, res) => {
                     }
                 }
             })
-
+        db.close;
     }
 
 })
