@@ -142,6 +142,6 @@ Actualmente existen 346 comunas en el territorio chileno y es la subdiviion de u
 ## Autor :wave:
 Para consultas criticas o sugerencias:
 
-Usuario Github: @climoralesg
+Usuario Github: github.com/climoralesg
 
 Email: climoralesg@gmail.com
