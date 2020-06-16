@@ -1,21 +1,21 @@
-# Api division territorial de chile 
+# Api division territorial de chile :earth_americas:
 Servicio Api de las regiones provincias y comunas de Chile basado
 en Api de division politico administrativa de la Unidad de Modernización y Gobierno Digital del Ministerio Secretaria General de la Presidencia de Chile. 
 https://apis.digital.gob.cl/dpa#geolocalizacion
 
-### Contenido
+### Contenido :page_facing_up:
 1. Pre-requisitos
 2. Instalacion
 3. Ejecucion de consultas
 4. Sobre el autor
 
-## Pre-requisitos
+## Pre-requisitos :pushpin:
 - Node JS >= 12.13.1 (No se ha probado en versiones anteriores)
 - Almacenamiento de base de datos MongoDB
 - Registro de documentos regiones en base de datos MongoDB (Ver archivo JSON en repositorio)
 - Completar el archivo .ENV (revisar .env.example)
 
-## Instalacion
+## Instalacion :rocket:
 
 1. Instalar las dependencias de ejecucion
 
@@ -31,7 +31,7 @@ https://apis.digital.gob.cl/dpa#geolocalizacion
    
         npm run start
 
-## Ejecucion de consultas
+## Ejecucion de consultas :speech_balloon:
 
 Las consultas estan divididas en 3 grupos.
 
@@ -45,7 +45,7 @@ Todas las consultas devuelven Un Estado de peticion y la informacion requerida e
 
 Si solicitamos una comuna perteneciente a una region a traves de sus identificadores, esto entrega una comuna
 
-          http://ip:port/regiones/{identificadorRegion}/comunas/{codigoComuna}
+        http://ip:port/regiones/{identificadorRegion}/comunas/{codigoComuna}
 
 Seria el siguiente link de ejemplo
 
@@ -135,11 +135,11 @@ Actualmente existen 346 comunas en el territorio chileno y es la subdiviion de u
         
         http://ip:port/regiones/{identificadorRegion}/provincias/{codigoProvincia}/comunas
 
-- Para obtener una comuna perteneciente a una provincia y a la vez a una region a traves de su codigo, esto entrega un estado y un sector de tipo comunas
+- Para obtener una comuna perteneciente a una provincia y a la vez a una region a traves de su codigo, esto entrega un estado y un sector de tipo comuna
 
         http://ip:port/regiones/{identificadorRegion}/provincias/{CodigoProvincia}/comunas/{codigoComuna}
 
-## Autor: 
+## Autor :wave:
 Para consultas criticas o sugerencias:
 
 Usuario Github: @climoralesg
