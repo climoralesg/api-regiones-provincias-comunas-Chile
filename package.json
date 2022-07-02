@@ -2,9 +2,10 @@
   "name": "apirestregiones",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "echo 1",
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon ./index.js",
     "start": "node dist/index.js"
   },
   "repository": {
@@ -23,15 +24,11 @@
   "homepage": "https://github.com/climoralesg/api-regiones-provincias-comunas-Chile#readme",
   "description": "Api de regiones provincias y comunas de Chile",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongodb": "^3.5.7"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.7.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.6",
-    "nodemon": "^1.3.3"
+    "nodemon": "^2.0.18"
   }
 }

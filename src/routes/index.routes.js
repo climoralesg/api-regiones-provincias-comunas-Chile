@@ -1,9 +1,10 @@
 import { Router } from 'express'
+import { index } from '../controllers/index.js';
 
-const router = Router()
+const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('Bienvenido a mi api')
-})
+router.get("/index",[],index);
+
 
 export default router;
+
