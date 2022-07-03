@@ -1,9 +1,6 @@
 //import 'dotenv/config'
 //require('dotenv').config();
-
-
-
-import { MongoClient} from 'mongodb';
+import MongoClient from 'mongodb';
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -37,8 +34,8 @@ const closeClient=async()=>{
     client.close();
 }
 
-export default {
-    connectDatabase:connect,
-    closeClient:closeClient,
-    getDB:getDB
+export {
+    connect ,
+    closeClient,
+    getDB
 }
