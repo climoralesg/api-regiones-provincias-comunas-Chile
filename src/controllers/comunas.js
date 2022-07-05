@@ -1,8 +1,22 @@
+import { request } from 'express';
+import { response } from 'express';
 
+import db from '../config/database.js';
 //Todas las comunas
 //http://ip:port/comunas/
+
+const comunas=async (req=request,res=response)=>{
+    const database=db.getDB();
+    const query = await database.collection('regions').find({},"");
+    console.log(query.response);
+    
+    query.toArray((err,docs)=>{
+        res.status(200).json(docs);
+    })
+}
+/*
 router.get('/', async (req, res) => {
-    const db = await connect();
+    db = await connect();
     if (db === 1) {
         const respuesta = mensajeErrorComunas(1, "Hubo un error al conectar la base de datos")
         res.json(respuesta)
@@ -118,4 +132,9 @@ function mensajeComunas(cod, resp, info) {
 
     }
     return estado;
+}
+*/
+
+export {
+    comunas
 }
