@@ -7,11 +7,27 @@ import db from '../config/database.js';
 
 const comunas=async (req=request,res=response)=>{
     const database=db.getDB();
-    const query = await database.collection('regions').find({},"");
-    console.log(query.response);
+    const options={
+        projection:{
+            "_id":0,
+            "nombre":0,
+            "capital_regional":0,
+            "region_iso_3166_2":0,
+            "provincias.nombre":0,
+            "provincias.codigo":0,
+            "provincias.capital_provincial":0
+        }
+    }
+    const query = await database.collection('regions').find({},options);  
     
     query.toArray((err,docs)=>{
-        res.status(200).json(docs);
+        const comunas=[];
+        docs.map((x)=>{
+            x.provincias.map((provincia)=>{
+                comunas.push(...provincia.comunas);
+            }) 
+        })
+        res.status(200).json(comunas);
     })
 }
 /*

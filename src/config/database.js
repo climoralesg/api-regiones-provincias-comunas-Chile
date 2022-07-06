@@ -19,7 +19,7 @@ let client;
 
 
 const connect= async ()=>{
-    client= await MongoClient.connect(url);
+    client= await MongoClient.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true});
     database = client.db(process.env.DB_NAME);
 }
 
