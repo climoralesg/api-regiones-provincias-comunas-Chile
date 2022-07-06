@@ -1,6 +1,6 @@
 [
   {
-    "region": "Arica y Parinacota",
+    "nombre": "Arica y Parinacota",
     "region_iso_3166_2": "CL-AP",
     "capital_regional": "Arica",
     "provincias": [
@@ -37,7 +37,7 @@
     ]
   },
   {
-    "region": "Tarapacá",
+    "nombre": "Tarapacá",
     "region_iso_3166_2": "CL-TA",
     "capital_regional": "Arica",
     "provincias": [
@@ -86,7 +86,7 @@
     ]
   },
   {
-    "region": "Antofagasta",
+    "nombre": "Antofagasta",
     "region_iso_3166_2": "CL-AN",
     "capital_regional": "Antofagasta",
     "provincias": [
@@ -150,7 +150,7 @@
     ]
   },
   {
-    "region": "Atacama",
+    "nombre": "Atacama",
     "region_iso_3166_2": "CL-AT",
     "capital_regional": "Copiapo",
     "provincias": [
@@ -214,7 +214,7 @@
     ]
   },
   {
-    "region": "Coquimbo",
+    "nombre": "Coquimbo",
     "region_iso_3166_2": "CL-CO",
     "capital_regional": "La Serena",
     "provincias": [
@@ -302,7 +302,7 @@
     ]
   },
   {
-    "region": "Valparaíso",
+    "nombre": "Valparaíso",
     "region_iso_3166_2": "CL-VS",
     "capital_regional": "Valparaíso",
     "provincias": [
@@ -517,7 +517,7 @@
     ]
   },
   {
-    "region": "Región del Libertador Gral. Bernardo O'Higgins",
+    "nombre": "Región del Libertador Gral. Bernardo O'Higgins",
     "region_iso_3166_2": "CL-LI",
     "capital_regional": "Rancagua",
     "provincias": [
@@ -677,7 +677,7 @@
     ]
   },
   {
-    "region": "Región del Maule",
+    "nombre": "Región del Maule",
     "region_iso_3166_2": "CL-ML",
     "capital_regional": "Talca",
     "provincias": [
@@ -832,7 +832,7 @@
     ]
   },
   {
-    "region": "Región del Biobío",
+    "nombre": "Región del Biobío",
     "region_iso_3166_2": "CL-BI",
     "capital_regional": "Concepción",
     "provincias": [
@@ -992,7 +992,7 @@
     ]
   },
   {
-    "region": "Región del Ñuble",
+    "nombre": "Región del Ñuble",
     "region_iso_3166_2": "CL-NB",
     "capital_regional": "Chillán",
     "provincias": [
@@ -1104,7 +1104,7 @@
     ]
   },
   {
-    "region": "Región de la Araucanía",
+    "nombre": "Región de la Araucanía",
     "region_iso_3166_2": "CL-AR",
     "capital_regional": "Temuco",
     "provincias": [
@@ -1253,7 +1253,7 @@
     ]
   },
   {
-    "region": "Región de los Ríos",
+    "nombre": "Región de los Ríos",
     "region_iso_3166_2": "CL-LR",
     "capital_regional": "Valdivia",
     "provincias": [
@@ -1322,7 +1322,7 @@
     ]
   },
   {
-    "region": "Región de los Lagos",
+    "nombre": "Región de los Lagos",
     "region_iso_3166_2": "CL-LL",
     "capital_regional": "Puerto Montt",
     "provincias": [
@@ -1477,7 +1477,7 @@
     ]
   },
   {
-    "region": "Región Aisén del Gral. Carlos Ibañez del Campo",
+    "nombre": "Región Aisén del Gral. Carlos Ibañez del Campo",
     "region_iso_3166_2": "CL-AI",
     "capital_regional": "Coyhaique",
     "provincias": [
@@ -1552,7 +1552,7 @@
     ]
   },
   {
-    "region": "Región de Magallanes y de la Antártica Chilena",
+    "nombre": "Región de Magallanes y de la Antártica Chilena",
     "region_iso_3166_2": "CL-MA",
     "capital_regional": "Punta Arenas",
     "provincias": [
@@ -1631,7 +1631,7 @@
     ]
   },
   {
-    "region": "Región Metropolitana de Santiago",
+    "nombre": "Región Metropolitana de Santiago",
     "region_iso_3166_2": "CL-RM",
     "capital_regional": "Santiago",
     "provincias": [

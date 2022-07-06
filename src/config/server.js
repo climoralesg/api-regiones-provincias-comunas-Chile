@@ -1,7 +1,7 @@
 import express from 'express';
 
 import indexRoute from '../routes/index.routes.js';
-
+import comunasRoute from '../routes/comunas.routes.js';
 //const express = require('express');
 //require('dotenv').config();
 
@@ -30,6 +30,7 @@ class Server{
 
     routes=()=>{
         this.express.use('/', indexRoute);
+        this.express.use('/comunas',comunasRoute);
     }
 
     listen=()=>{

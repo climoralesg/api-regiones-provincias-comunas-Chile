@@ -1,3 +1,5 @@
+# Estado: En renovacion.
+
 # Api division territorial de Chile :earth_americas:
 Servicio Api de las regiones provincias y comunas de Chile basado
 en Api de division politico administrativa de la Unidad de Modernización y Gobierno Digital del Ministerio Secretaria General de la Presidencia de Chile. 

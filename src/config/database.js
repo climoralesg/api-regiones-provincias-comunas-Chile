@@ -19,8 +19,8 @@ let client;
 
 
 const connect= async ()=>{
-    client= await MongoClient.connect(url);
-    database = client.db('login');
+    client= await MongoClient.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true});
+    database = client.db(process.env.DB_NAME);
 }
 
 const getDB=()=>{
@@ -34,7 +34,7 @@ const closeClient=async()=>{
     client.close();
 }
 
-export {
+export default {
     connect ,
     closeClient,
     getDB
