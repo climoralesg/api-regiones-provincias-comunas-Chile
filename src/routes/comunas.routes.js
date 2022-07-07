@@ -1,9 +1,10 @@
 import { Router } from 'express'
-import { comunas } from '../controllers/comunas.js';
+import { comunas,selectComuna } from '../controllers/comunas.js';
 
 const router = Router();
 
 router.get("/",[],comunas);
+router.get("/:id",[],selectComuna);
 
 
 export default router;

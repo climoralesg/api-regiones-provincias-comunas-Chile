@@ -15,7 +15,8 @@ const comunas=async (req=request,res=response)=>{
             "region_iso_3166_2":0,
             "provincias.nombre":0,
             "provincias.codigo":0,
-            "provincias.capital_provincial":0
+            "provincias.capital_provincial":0,
+            "provincias.comunas.$":1
         }
     }
     const query = await database.collection('regions').find({},options);  
@@ -30,6 +31,49 @@ const comunas=async (req=request,res=response)=>{
         res.status(200).json(comunas);
     })
 }
+
+//Comuna
+//http://ip:port/comunas/{codigoComuna}
+const selectComuna=async(req=request,res=response)=>{
+    const database=db.getDB();
+    //console.log(req.params.id);
+    const options={            
+        projection:{"_id":0,
+        "nombre":0,
+        "capital_regional":0,
+        "region_iso_3166_2":0,
+        "provincias.nombre":0,
+        "provincias.codigo":0,
+        "provincias.capital_provincial":0,
+    
+    },
+    };
+
+    const regionCollection=database.collection('regions');
+    const query = await regionCollection.find({"provincias.comunas": {$elemMatch:{"codigo":req.params.id}}},options);
+    query.toArray((err,docs)=>{
+        
+        const comuna=docs[0].provincias.map((provincia)=>{
+            let comuna=provincia.comunas.filter((comuna)=>{
+                if(comuna.codigo===req.params.id){
+                    return comuna
+                }
+            });
+            return comuna;
+        })
+        const elemento = comuna.reduce((acc, el) => acc.concat(el), [])
+        console.log(elemento[0])
+        /*
+        console.dir(docs[0].provincias, {
+            depth: null,
+          });
+          */
+        res.status(200).json({respuesta:"Respuesta",datos:elemento[0]});
+
+    });
+
+}
+
 /*
 router.get('/', async (req, res) => {
     db = await connect();
@@ -152,5 +196,6 @@ function mensajeComunas(cod, resp, info) {
 */
 
 export {
-    comunas
+    comunas,
+    selectComuna
 }
