@@ -37,6 +37,7 @@ const comunas=async (req=request,res=response)=>{
 //Comuna
 //http://ip:port/comunas/{codigoComuna}
 const selectComuna=async(req=request,res=response)=>{
+    const codComuna=req.params.id;
     const database=db.getDB();
     const options={            
         projection:{"_id":0,
@@ -51,7 +52,7 @@ const selectComuna=async(req=request,res=response)=>{
     };
 
     const regionCollection=database.collection('regions');
-    const query = await regionCollection.find({"provincias.comunas": {$elemMatch:{"codigo":req.params.id}}},options);
+    const query = await regionCollection.find({"provincias.comunas": {$elemMatch:{"codigo":codComuna}}},options);
     query.toArray((err,docs)=>{
         
         const comuna=docs[0].provincias.map((provincia)=>{
